@@ -1,0 +1,22 @@
+<h2>Confirm Your Order</h2>
+
+<ul>
+  <li *ngFor="let item of cart">
+    {{ item.itemName }} - ₹{{ item.price }}
+  </li>
+</ul>
+
+<p><strong>Total:</strong> ₹{{ totalPrice }}</p>
+
+<h3>Select Payment Method:</h3>
+<label><input type="radio" name="payment" value="UPI" [(ngModel)]="selectedPayment" /> UPI</label>
+<label><input type="radio" name="payment" value="CARD" [(ngModel)]="selectedPayment" /> CARD</label>
+<label><input type="radio" name="payment" value="COD" [(ngModel)]="selectedPayment" /> Cash on Delivery</label>
+
+<br /><br />
+<button (click)="placeFinalOrder()" [disabled]="!selectedPayment">Order Now</button>
+
+<div *ngIf="orderPlaced">
+  <h3 style="color: green;">ORDER PLACED!</h3>
+  <button (click)="goToDashboard()">Back to Dashboard</button>
+</div>

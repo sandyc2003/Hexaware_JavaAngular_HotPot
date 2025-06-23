@@ -1,0 +1,33 @@
+<div class="container mt-4">
+    <h2 class="text-primary mb-4">Pizza Express Menu</h2>
+  
+    <!-- MENU ITEMS LIST -->
+    <ul class="list-group mb-4" *ngIf="menuItems.length > 0">
+      <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let item of menuItems">
+        <div>
+          <strong>{{ item.itemName }}</strong>
+          <br />
+          <small>₹{{ item.price }}</small>
+        </div>
+        <button class="btn btn-sm btn-success" (click)="addToCart(item)">Add to Cart</button>
+      </li>
+    </ul>
+  
+    <!-- CART DISPLAY -->
+    <div *ngIf="cart.length > 0" class="card">
+      <div class="card-header bg-secondary text-white">
+        <h5 class="mb-0">Your Cart ({{ cart.length }} items)</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let item of cart; let i = index">
+          <div>{{ item.itemName }} - ₹{{ item.price }}</div>
+          <button class="btn btn-sm btn-danger" (click)="removeFromCart(i)">Remove</button>
+        </li>
+      </ul>
+      <div class="card-footer d-flex justify-content-between align-items-center">
+        <strong>Total: ₹{{ totalPrice }}</strong>
+        <button class="btn btn-warning" (click)="placeOrder()">Place Order</button>
+      </div>
+    </div>
+  </div>
+  
